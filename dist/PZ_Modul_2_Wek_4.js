@@ -30,7 +30,8 @@ var PrintMaсhine = /** @class */ (function () {
     };
     return PrintMaсhine;
 }());
-var qwe = new PrintMaсhine(20, 'black', 'Arial');
+var qwe = new PrintMaсhine(20, 'red', 'Arial');
+qwe.print('Реализовать класс PrintMaсhine, которой состоит из:');
 /*
 Задание 2
 Реализовать класс, описывающий новость (заголовок, текст,
@@ -46,6 +47,32 @@ var qwe = new PrintMaсhine(20, 'black', 'Arial');
 Рисунок 1
 
 */
+var News = /** @class */ (function () {
+    function News(heading, text, tags, dateOfPublication) {
+        this.heading = heading;
+        this.text = text;
+        this.tags = tags;
+        this.dateOfPublication = new Date(dateOfPublication);
+    }
+    News.prototype.print = function () {
+        function prescription() {
+            var today = new Date();
+            if (this.dateOfPublication.toLocaleDateString() == today.toLocaleDateString()) {
+                return 'сегодня';
+            }
+            else if (this.dateOfPublication.valueOf() > (today.valueOf() - 1000 * 60 * 60 * 24 * 7)) {
+                return ((today.valueOf() - this.ddateOfPublicationate.valueOf()) / (1000 * 60 * 60 * 24)).toFixed(0) + ' дней назад';
+            }
+            else {
+                return this.dateOfPublication.toLocaleDateString();
+            }
+        }
+        document.write("<h2>" + this.heading + "</h2> <h4>" + prescription() + "</h4> <p>" + this.text + "</p> <h5>" + this.tags.join(' #') + "</h5>");
+    };
+    return News;
+}());
+var post = new News('you', 'never', ['walk', 'alone'], '2023-07-29');
+console.log(post.print());
 /*
 Задание 3
 Реализовать класс, описывающий новостную ленту.

@@ -37,7 +37,13 @@ class PrintMaсhine{
     
 }
 
-let qwe = new PrintMaсhine(20, 'black', 'Arial')
+let qwe = new PrintMaсhine(20, 'red', 'Arial')
+
+    qwe.print('Реализовать класс PrintMaсhine, которой состоит из:')
+
+
+
+        
 
 
 /*
@@ -55,6 +61,37 @@ let qwe = new PrintMaсhine(20, 'black', 'Arial')
 Рисунок 1
 
 */
+
+class News {
+    heading: string
+    text: string
+    tags: string[]
+    dateOfPublication: Date
+    constructor( heading: string, text: string, tags: string[], dateOfPublication: string) {
+       this.heading = heading
+       this.text = text
+       this.tags = tags
+       this.dateOfPublication = new Date(dateOfPublication)
+    }
+    print(){
+        function prescription () {
+            let today = new Date()
+            if (this.dateOfPublication.toLocaleDateString() == today.toLocaleDateString()) {
+              return 'сегодня'
+            } else if (this.dateOfPublication.valueOf() > (today.valueOf() - 1000 * 60 * 60 * 24 * 7)) {
+              return ((today.valueOf() - this.ddateOfPublicationate.valueOf()) / (1000 * 60 * 60 * 24)).toFixed(0) + ' дней назад'
+            } else {
+              return this.dateOfPublication.toLocaleDateString()
+            }
+          }
+          document.write(`<h2>${this.heading}</h2> <h4>${prescription ()}</h4> <p>${this.text}</p> <h5>${this.tags.join(' #')}</h5>`)
+
+    }
+}
+const post = new News('you', 'never', ['walk', 'alone'], '2023-07-29')
+console.log(post.print())
+
+
 /*
 Задание 3
 Реализовать класс, описывающий новостную ленту.
