@@ -67,7 +67,15 @@ var News = /** @class */ (function () {
             return 'сегодня';
         }
         else if (this.dateOfPublication.valueOf() > (today.valueOf() - 1000 * 60 * 60 * 24 * 7)) {
-            return Math.floor((today.valueOf() - this.dateOfPublication.valueOf()) / (1000 * 60 * 60 * 24)) + ' дней назад';
+            if (0 < (today.valueOf() - this.dateOfPublication.valueOf()) / (1000 * 60 * 60 * 24) && (today.valueOf() - this.dateOfPublication.valueOf()) / (1000 * 60 * 60 * 24) <= 2) {
+                return 'вчера';
+            }
+            else if ((2 < (today.valueOf() - this.dateOfPublication.valueOf()) / (1000 * 60 * 60 * 24) && (today.valueOf() - this.dateOfPublication.valueOf()) / (1000 * 60 * 60 * 24) <= 5)) {
+                return Math.floor((today.valueOf() - this.dateOfPublication.valueOf()) / (1000 * 60 * 60 * 24)) + ' дня назад';
+            }
+            else if ((5 < (today.valueOf() - this.dateOfPublication.valueOf()) / (1000 * 60 * 60 * 24) && (today.valueOf() - this.dateOfPublication.valueOf()) / (1000 * 60 * 60 * 24) <= 7)) {
+                return Math.floor((today.valueOf() - this.dateOfPublication.valueOf()) / (1000 * 60 * 60 * 24)) + ' дней назад';
+            }
         }
         else {
             return this.dateOfPublication.toLocaleDateString();
@@ -76,13 +84,12 @@ var News = /** @class */ (function () {
     News.prototype.print = function () {
         news_Headline_Style.print(this.heading);
         news_Text_Style.print(this.text);
-        news_Tags_Style.print('Реализовать класс PrintMaсhine, которой состоит из:');
-        news_Data_Style.print(this.dateOfPublication.toString());
+        news_Tags_Style.print('#' + this.tags.join(' #'));
+        news_Data_Style.print(this.dateOfPublication.prescription());
     };
     return News;
 }());
-var post = new News('you', 'never', ['walk', 'alone'], '2023-10-14');
-document.write(post.prescription());
+var post = new News('you', 'never', ['walk', 'alone'], '2023-10-15');
 post.print();
 /*
 Задание 3
